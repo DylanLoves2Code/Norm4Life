@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norm Macdonald — The Trophy Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #16161e;
+    --amber: #c8922a;
+    --amber-light: #e8b84b;
+    --amber-dim: #8a5e14;
+    --gold: #d4a847;
+    --text: #e8e0d0;
+    --text-muted: #8a8070;
+    --text-dim: #4a4438;
+    --border: #2a2820;
+    --border-warm: #3a3020;
+    --red: #8b2020;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.35;
+  }
+
+  /* Navigation */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-warm);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+  }
+
+  nav .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+
+  nav .nav-links {
+    display: flex;
+    gap: 0;
+    list-style: none;
+  }
+
+  nav .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0 14px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+    border-right: 1px solid var(--border);
+  }
+
+  nav .nav-links a:hover { color: var(--amber-light); }
+
+  /* Hero */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 2rem 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(200,146,42,0.06) 0%, transparent 70%);
+  }
+
+  .hero-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 2rem;
+    opacity: 0.8;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(72px, 12vw, 160px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-name span {
+    display: block;
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-style: italic;
+    color: var(--text-muted);
+    max-width: 540px;
+    margin: 2rem auto;
+    font-weight: 300;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--amber);
+    display: block;
+    line-height: 1;
+  }
+
+  .hero-stat .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    display: block;
+    margin-top: 4px;
+  }
+
+  .hero-scroll {
+    margin-top: 4rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border-warm);
+    margin: 0;
+  }
+
+  /* Section layout */
+  .section {
+    padding: 80px 0;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
+  }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--amber-dim);
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  .section-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--text-muted);
+    max-width: 560px;
+    margin-top: 1rem;
+    font-weight: 300;
+  }
+
+  /* Search & Filter */
+  .controls {
+    background: var(--bg2);
+    border: 1px solid var(--border-warm);
+    padding: 1.5rem 2rem;
+    margin-bottom: 3rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .search-wrap {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+  }
+
+  .search-wrap::before {
+    content: '⌕';
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-dim);
+    font-size: 18px;
+  }
+
+  #search {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    padding: 10px 12px 10px 36px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  #search:focus { border-color: var(--amber-dim); }
+  #search::placeholder { color: var(--text-dim); }
+
+  .filter-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .filter-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-btn:hover { border-color: var(--amber-dim); color: var(--amber); }
+  .filter-btn.active { background: var(--amber-dim); border-color: var(--amber-dim); color: var(--amber-light); }
+
+  /* Cards grid */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .bit-card {
+    background: var(--bg2);
+    padding: 1.75rem;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bit-card:hover { background: var(--bg3); }
+
+  .bit-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: transparent;
+    transition: background 0.2s;
+  }
+
+  .bit-card:hover::before { background: var(--amber-dim); }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+    gap: 1rem;
+  }
+
+  .card-cat {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    background: rgba(200,146,42,0.1);
+    padding: 3px 8px;
+    border: 1px solid rgba(200,146,42,0.2);
+    white-space: nowrap;
+  }
+
+  .card-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+  }
+
+  .card-source {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  .card-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .card-link {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber-dim);
+    text-decoration: none;
+    border-bottom: 1px solid var(--amber-dim);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .card-link:hover { color: var(--amber-light); border-color: var(--amber-light); }
+
+  .card-embed {
+    margin-top: 1rem;
+  }
+
+  .card-embed iframe {
+    width: 100%;
+    height: 180px;
+    border: none;
+    background: #000;
+  }
+
+  /* Moth Shrine */
+  #moth {
+    background: var(--bg2);
+    border-top: 1px solid var(--border-warm);
+    border-bottom: 1px solid var(--border-warm);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #moth::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(200,146,42,0.04) 0%, transparent 70%);
+  }
+
+  .moth-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 80px 2rem;
+    position: relative;
+  }
+
+  .moth-crown {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .moth-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+  }
+
+  .moth-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 7vw, 80px);
+    font-style: italic;
+    color: var(--amber);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .moth-subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .moth-video {
+    margin: 3rem 0;
+    position: relative;
+  }
+
+  .moth-video iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: none;
+    display: block;
+  }
+
+  .moth-video::before,
+  .moth-video::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    top: -10px; left: -10px;
+    border: 1px solid rgba(200,146,42,0.15);
+  }
+
+  .moth-video::after {
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+    top: -20px; left: -20px;
+    border-color: rgba(200,146,42,0.07);
+  }
+
+  .moth-essay {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  .moth-essay-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .moth-essay-text p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--text-muted);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .moth-transcript {
+    background: var(--bg3);
+    border-left: 2px solid var(--amber-dim);
+    padding: 2rem;
+    position: relative;
+  }
+
+  .moth-transcript .transcript-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--amber-dim);
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+
+  .moth-transcript blockquote {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    line-height: 1.9;
+    color: var(--text-muted);
+    font-style: normal;
+    font-weight: 300;
+    max-height: 420px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  /* Paths section */
+  .paths-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    margin-top: 1rem;
+  }
+
+  .path-card {
+    background: var(--bg2);
+    padding: 2.5rem;
+  }
+
+  .path-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: inline-block;
+    padding: 4px 10px;
+  }
+
+  .path-tag.starter { color: var(--amber); background: rgba(200,146,42,0.1); border: 1px solid rgba(200,146,42,0.2); }
+  .path-tag.obsessive { color: #a0c0ff; background: rgba(80,120,200,0.1); border: 1px solid rgba(80,120,200,0.2); }
+
+  .path-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .path-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text-muted);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .path-list {
+    list-style: none;
+    counter-reset: path-counter;
+  }
+
+  .path-list li {
+    counter-increment: path-counter;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .path-list li::before {
+    content: counter(path-counter, decimal-leading-zero);
+    color: var(--amber-dim);
+    flex-shrink: 0;
+    font-size: 9px;
+    margin-top: 1px;
+  }
+
+  .path-list li a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .path-list li a:hover { color: var(--amber-light); }
+
+  /* Footer */
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border-warm);
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .footer-quote {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .footer-quotemark {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: var(--amber-dim);
+    line-height: 0.5;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  #footer-quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--text);
+    font-weight: 300;
+    line-height: 1.6;
+    transition: opacity 0.5s;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-meta {
+    margin-top: 3rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    line-height: 2;
+  }
+
+  .footer-quote-nav {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  .quote-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    padding: 6px 14px;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+
+  .quote-btn:hover { border-color: var(--amber-dim); color: var(--amber); }
+
+  /* No results */
+  .no-results {
+    text-align: center;
+    padding: 4rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 18px;
+    grid-column: 1 / -1;
+    font-weight: 300;
+  }
+
+  /* Count bar */
+  .results-count {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav .nav-links { display: none; }
+    .moth-essay { grid-template-columns: 1fr; }
+    .paths-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 2rem; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .controls { flex-direction: column; }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-warm); }
+
+  /* Fade in */
+  .fade-in {
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">The Trophy Room</span>
+  <ul class="nav-links">
+    <li><a href="#catalogue">Catalogue</a></li>
+    <li><a href="#moth">The Moth Joke</a></li>
+    <li><a href="#paths">Start Here</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <span class="hero-eyebrow">October 17, 1959 — September 14, 2021</span>
+  <h1 class="hero-name">
+    Norm
+    <span>Macdonald</span>
+  </h1>
+  <p class="hero-tagline">He told jokes. They were funny. That was enough for him, and more than enough for everyone else.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="num" id="total-count">120</span>
+      <span class="label">Bits Catalogued</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">12</span>
+      <span class="label">Categories</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">32</span>
+      <span class="label">Years of Material</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">1</span>
+      <span class="label">Moth Joke</span>
+    </div>
+  </div>
+  <p class="hero-scroll">↓ &nbsp; scroll to enter</p>
+</section>
+
+<hr class="divider">
+
+<!-- PATHS -->
+<section id="paths" class="section">
+  <div class="section-header">
+    <span class="section-label">Guided Paths</span>
+    <h2 class="section-title">Where to Begin</h2>
+    <p class="section-desc">Two routes through the archive. One for the curious. One for the afflicted.</p>
+  </div>
+  <div class="paths-grid">
+    <div class="path-card">
+      <span class="path-tag starter">Start Here — ~10 min</span>
+      <h3 class="path-title">The Introduction</h3>
+      <p class="path-desc">A curated ten minutes for those who have heard the name but not yet understood the problem.</p>
+      <ol class="path-list">
+        <li><a href="https://www.youtube.com/watch?v=XFGAQrEUaeU" target="_blank">Weekend Update: OJ Simpson (1994–1997)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=AxFzTHzYFI8" target="_blank">Conan: The Moth Joke (2017)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=rBnj8ZkByBg" target="_blank">Bob Saget Roast: The Clean Set (2008)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=X8gSCEiZMaU" target="_blank">David Letterman: Late Show (2015)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=0YzVkxBIhFM" target="_blank">Conan: Courtney Thorne-Smith (1997)</a></li>
+      </ol>
+    </div>
+    <div class="path-card">
+      <span class="path-tag obsessive">Deep Cuts — No End</span>
+      <h3 class="path-title">The Long Way Down</h3>
+      <p class="path-desc">For those who have already lost several hours and would like to lose several more, on purpose.</p>
+      <ol class="path-list">
+        <li><a href="https://www.youtube.com/watch?v=xMk8wuw7nek" target="_blank">Norm Macdonald Live: Ep. 1 (2013)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=7DKfadjWQeU" target="_blank">Nothing Special — Netflix (2022)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=3uIADSaH5U0" target="_blank">Larry King Now — Full Interview</a></li>
+        <li><a href="https://www.youtube.com/watch?v=4WbLG-OoAL8" target="_blank">Me Doing Standup (2011)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=pUWoaVkUb3I" target="_blank">Hitler's Dog, Gossip &amp; Trickery (2017)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=cACpFXdbX4A" target="_blank">ESPY Awards Monologue (1998)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=sMDsWe5fLJw" target="_blank">Conan: Steve Irwin Joke</a></li>
+        <li><a href="https://normmacdonaldarchive.com" target="_blank">NormMacdonaldArchive.com — All Appearances</a></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- MOTH SHRINE -->
+<section id="moth">
+  <div class="moth-inner">
+    <div class="moth-crown">
+      <span class="moth-icon">🦋</span>
+      <h2 class="moth-title">The Moth Joke</h2>
+      <span class="moth-subtitle">Conan O'Brien · Late Night · 2017 · 7 minutes, 4 seconds</span>
+    </div>
+
+    <div class="moth-video">
+      <iframe
+        src="https://www.youtube.com/embed/AxFzTHzYFI8"
+        title="Norm Macdonald — The Moth Joke on Conan"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <div class="moth-essay">
+      <div class="moth-essay-text">
+        <h3>On the Subject of the Moth Joke</h3>
+        <p>In 2017, Norm Macdonald sat down on Conan O'Brien's program and told a joke that takes approximately seven minutes to deliver. The joke is about a moth. The punchline is not about a moth.</p>
+        <p>The structure is a Norm Macdonald original: a shaggy-dog story in the tradition of the form, wherein the length of the telling becomes the point of the telling. He is not buying time. He is spending it, deliberately, with complete composure, knowing exactly what he is doing.</p>
+        <p>The audience begins laughing about forty seconds in. Not because anything funny has been said, but because they have already understood that something funny is being done to them. This is the distinction Norm Macdonald made his career out of.</p>
+        <p>The punchline, when it arrives, is both earned and unearned. It is a real joke. It is also not a joke at all. He delivers it as though reading a sentence from a manual. Conan laughs for a long time. So does everyone else. Then Norm sits very still, satisfied.</p>
+      </div>
+      <div class="moth-transcript">
+        <span class="transcript-label">Transcript — The Moth Joke</span>
+        <blockquote>
+          A moth goes into a podiatrist's office. The podiatrist says, "What seems to be the problem?" The moth says, "Doc, I don't know where to begin. I go to work for Gregory Illinivich and all day long I work. And for what? For a few lousy dollars. And meanwhile Gregory sits at home, does nothing, makes more money than me. I got a wife, doc. She's a mess. She's a drunk. She runs around on me. I got a son. He's turning out bad. He don't listen to me. He's got no respect. You think that's easy to take? I come home one day, my mother's sick. She's living with us, she's driving me crazy. And my brother, he's in trouble again. I go to the bar for a drink. I can't even afford a drink. My whole life, doc, is just — it's darkness and it's going nowhere."
+
+          The podiatrist says, "Well, it sounds like you need a psychiatrist. Why did you come to me?"
+
+          And the moth says, "The light was on."
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CATALOGUE -->
+<section id="catalogue" class="section">
+  <div class="section-header">
+    <span class="section-label">Complete Archive</span>
+    <h2 class="section-title">The Catalogue</h2>
+    <p class="section-desc">Every bit, in one room. Use the filters. Or don't. He didn't care either way.</p>
+  </div>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <input type="text" id="search" placeholder="Search bits, jokes, guests..." autocomplete="off">
+    </div>
+    <div class="filter-btns" id="filter-btns">
+      <button class="filter-btn active" data-cat="all">All</button>
+      <button class="filter-btn" data-cat="Weekend Update">Update</button>
+      <button class="filter-btn" data-cat="Talk Shows">Talk Shows</button>
+      <button class="filter-btn" data-cat="SNL Sketches">SNL</button>
+      <button class="filter-btn" data-cat="Stand-Up">Stand-Up</button>
+      <button class="filter-btn" data-cat="Norm Macdonald Live">NML</button>
+      <button class="filter-btn" data-cat="Roasts">Roasts</button>
+      <button class="filter-btn" data-cat="One-Liners">One-Liners</button>
+      <button class="filter-btn" data-cat="Dark Bits">Dark Bits</button>
+      <button class="filter-btn" data-cat="Film &amp; TV">Film &amp; TV</button>
+      <button class="filter-btn" data-cat="Rare &amp; Obscure">Rare</button>
+      <button class="filter-btn" data-cat="Hosting">Hosting</button>
+    </div>
+  </div>
+
+  <p class="results-count" id="results-count"></p>
+  <div class="cards-grid" id="cards-grid"></div>
+</section>
+
+<hr class="divider">
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-quote">
+    <span class="footer-quotemark">"</span>
+    <p id="footer-quote-text"></p>
+    <div class="footer-quote-nav">
+      <button class="quote-btn" onclick="prevQuote()">← Prev</button>
+      <button class="quote-btn" onclick="nextQuote()">Next →</button>
+    </div>
+  </div>
+  <div class="footer-meta">
+    <p>Norm Macdonald — October 17, 1959 – September 14, 2021</p>
+    <p>Ottawa, Ontario, Canada</p>
+    <p style="margin-top: 1rem; color: var(--amber-dim);">The Trophy Room — A fan archive. All videos are the property of their respective owners.</p>
+    <p>Sources: normmacdonald.lol · normmacdonaldarchive.com · YouTube · Wikipedia</p>
+  </div>
+</footer>
+
+<script>
+const BITS = [
+  // WEEKEND UPDATE
+  {
+    title: "OJ Simpson — The Running Joke",
+    cat: "Weekend Update",
+    year: "1994–1997",
+    source: "SNL Weekend Update",
+    desc: "A multi-year campaign conducted with the sincerity of a man who genuinely believed O.J. Simpson had committed murder. He said so every week. NBC executives found this less amusing than Norm did.",
+    link: "https://www.youtube.com/watch?v=XFGAQrEUaeU",
+    embed: "XFGAQrEUaeU"
+  },
+  {
+    title: "Michael Jackson Bits",
+    cat: "Weekend Update",
+    year: "1993–1997",
+    source: "SNL Weekend Update",
+    desc: "A recurring subject. The observations were specific. The delivery was identical to his observations on everything else, which somehow made them more specific.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+weekend+update+michael+jackson"
+  },
+  {
+    title: "Bob Dole Impression",
+    cat: "Weekend Update",
+    year: "1996",
+    source: "SNL Weekend Update",
+    desc: "A characterization of the Republican candidate that managed to be both accurate and deeply strange. The third person. The stiffness. The arm. Norm committed fully to all of it.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+bob+dole+snl"
+  },
+  {
+    title: "Celebrity Obituaries",
+    cat: "Weekend Update",
+    year: "1994–1997",
+    source: "SNL Weekend Update",
+    desc: "The segment in which Norm would announce a celebrity death and then say something that made you feel bad for laughing, which he understood was the entire point.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+weekend+update+obituaries"
+  },
+  {
+    title: "Toonces the Driving Cat Update",
+    cat: "Weekend Update",
+    year: "1995",
+    source: "SNL Weekend Update",
+    desc: "He covered the news about a cat who drove a car. He treated this story with the same gravity as the other stories.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+weekend+update+1995"
+  },
+  {
+    title: "Fired from Update",
+    cat: "Weekend Update",
+    year: "1997",
+    source: "SNL / Behind the Scenes",
+    desc: "Don Ohlmeyer, president of NBC Entertainment and personal friend of O.J. Simpson, had Norm fired. Norm has described this as one of the funniest things that ever happened to him.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+fired+snl+don+ohlmeyer"
+  },
+
+  // TALK SHOWS
+  {
+    title: "The Courtney Thorne-Smith Bit",
+    cat: "Talk Shows",
+    year: "1997",
+    source: "Late Night with Conan O'Brien",
+    desc: "He was a guest to promote a film. He spent the segment making a joke about Jim Carrey at the expense of Courtney Thorne-Smith, who was sitting right there. He did not stop.",
+    link: "https://www.youtube.com/watch?v=0YzVkxBIhFM",
+    embed: "0YzVkxBIhFM"
+  },
+  {
+    title: "The Steve Irwin Joke",
+    cat: "Talk Shows",
+    year: "2006",
+    source: "Late Night with Conan O'Brien",
+    desc: "Steve Irwin had just died. Norm told a joke about Steve Irwin. The audience went quiet. Conan looked at the camera. It is one of the most watched clips he ever produced.",
+    link: "https://www.youtube.com/watch?v=sMDsWe5fLJw",
+    embed: "sMDsWe5fLJw"
+  },
+  {
+    title: "The Moth Joke",
+    cat: "Talk Shows",
+    year: "2017",
+    source: "Conan",
+    desc: "Seven minutes. A moth. A podiatrist. The light was on. Considered by many people, including people who are usually wrong about things, to be one of the greatest single comedy performances ever aired on television.",
+    link: "https://www.youtube.com/watch?v=AxFzTHzYFI8",
+    embed: "AxFzTHzYFI8"
+  },
+  {
+    title: "Late Show with David Letterman (2015)",
+    cat: "Talk Shows",
+    year: "2015",
+    source: "Late Show with David Letterman",
+    desc: "One of several appearances. This one is noted because Letterman laughed until he seemed genuinely upset about it. Norm found this acceptable.",
+    link: "https://www.youtube.com/watch?v=X8gSCEiZMaU",
+    embed: "X8gSCEiZMaU"
+  },
+  {
+    title: "Larry King Now — Full Interview",
+    cat: "Talk Shows",
+    year: "2013",
+    source: "Larry King Now",
+    desc: "A long-form conversation with Larry King during which Norm was funnier than he had any obligation to be while ostensibly being interviewed. A primer on how he thought about comedy.",
+    link: "https://www.youtube.com/watch?v=3uIADSaH5U0",
+    embed: "3uIADSaH5U0"
+  },
+  {
+    title: "Regis & Kathie Lee Appearance",
+    cat: "Talk Shows",
+    year: "1998",
+    source: "Live with Regis & Kathie Lee",
+    desc: "He appeared on this program and behaved as he always did, which was a small act of aggression against the format of the program. The hosts managed.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+regis+kathie+lee"
+  },
+  {
+    title: "The Tonight Show with Jay Leno",
+    cat: "Talk Shows",
+    year: "1997–2005",
+    source: "The Tonight Show",
+    desc: "Multiple appearances. Norm was reliably strange on a program that was not designed for strangeness. He didn't change his approach. The program adjusted slightly.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+tonight+show+leno"
+  },
+  {
+    title: "Howard Stern Show Appearances",
+    cat: "Talk Shows",
+    year: "1997–2017",
+    source: "The Howard Stern Show",
+    desc: "A recurring guest who did not soften his act for radio. Several of these appearances are considered essential by the people who consider these things.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+howard+stern"
+  },
+
+  // SNL SKETCHES
+  {
+    title: "Celebrity Jeopardy — Turd Ferguson",
+    cat: "SNL Sketches",
+    year: "1996–2000",
+    source: "Saturday Night Live",
+    desc: "He played Burt Reynolds. Burt Reynolds had named himself Turd Ferguson. Alex Trebek — played by Will Ferrell — did not accept this. Norm continued to be Turd Ferguson. This went on.",
+    link: "https://www.youtube.com/watch?v=vO4D5Yr0d1E",
+    embed: "vO4D5Yr0d1E"
+  },
+  {
+    title: "Bob Dole on The Real World",
+    cat: "SNL Sketches",
+    year: "1996",
+    source: "Saturday Night Live",
+    desc: "Bob Dole, as portrayed by Norm, was placed in a house with younger people. The sketch is remembered primarily for Norm's commitment to the physical bearing of Bob Dole in an unsuitable environment.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+bob+dole+real+world+snl"
+  },
+  {
+    title: "David Letterman Impression",
+    cat: "SNL Sketches",
+    year: "1994–1995",
+    source: "Saturday Night Live",
+    desc: "Norm had one of the more accurate Letterman impressions of the era. He did not always use this accuracy in ways that flattered Letterman. Letterman seemed fine with this.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+letterman+impression+snl"
+  },
+  {
+    title: "Burt Reynolds on Weekend Update",
+    cat: "SNL Sketches",
+    year: "1999",
+    source: "Saturday Night Live",
+    desc: "He returned to play Burt Reynolds as a Weekend Update guest. Turd Ferguson was mentioned. Order was not restored.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+burt+reynolds+snl"
+  },
+
+  // STAND-UP
+  {
+    title: "Me Doing Standup (2011)",
+    cat: "Stand-Up",
+    year: "2011",
+    source: "Comedy Central Special",
+    desc: "His first proper stand-up special. He was nervous before it, which he mentioned during it, which was funnier than not mentioning it. The Hitler bit appears here. So does the moth, in embryonic form.",
+    link: "https://www.youtube.com/watch?v=4WbLG-OoAL8",
+    embed: "4WbLG-OoAL8"
+  },
+  {
+    title: "Hitler's Dog, Gossip & Trickery (2017)",
+    cat: "Stand-Up",
+    year: "2017",
+    source: "Netflix Special",
+    desc: "The second special. Darker. Longer setups. A bit about Hitler's dog that arrives at a conclusion no reasonable person would have predicted. His craft at its most visible.",
+    link: "https://www.youtube.com/watch?v=pUWoaVkUb3I",
+    embed: "pUWoaVkUb3I"
+  },
+  {
+    title: "Nothing Special (2022)",
+    cat: "Stand-Up",
+    year: "2022",
+    source: "Netflix — Posthumous",
+    desc: "He filmed this alone in a room, knowing he was dying, and did not mention that he was dying. Released after his death. The audience in the credits appears to watch it after it has already been filmed. It is very funny and very hard to watch.",
+    link: "https://www.youtube.com/watch?v=7DKfadjWQeU",
+    embed: "7DKfadjWQeU"
+  },
+  {
+    title: "The Hitler Joke",
+    cat: "Stand-Up",
+    year: "2011",
+    source: "Me Doing Standup",
+    desc: "A long-form joke about Hitler that arrives at the observation that he was, in fact, a racist. The conclusion is not a surprise. The journey to it is.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+hitler+joke+standup"
+  },
+  {
+    title: "The Hitchhiker Bit",
+    cat: "Stand-Up",
+    year: "2011",
+    source: "Me Doing Standup",
+    desc: "A bit about picking up a hitchhiker that builds a very specific world in great detail and then does something unexpected with all of it. A useful example of how his construction worked.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+hitchhiker+standup"
+  },
+
+  // NORM MACDONALD LIVE
+  {
+    title: "Norm Macdonald Live — Episode 1",
+    cat: "Norm Macdonald Live",
+    year: "2013",
+    source: "normmacdonald.lol / YouTube",
+    desc: "The first episode of the podcast he ran from his desk. The format was designed to give him as many opportunities to say surprising things as possible. This succeeded.",
+    link: "https://www.youtube.com/watch?v=xMk8wuw7nek",
+    embed: "xMk8wuw7nek"
+  },
+  {
+    title: "NML — David Letterman Guest",
+    cat: "Norm Macdonald Live",
+    year: "2017",
+    source: "Norm Macdonald Live",
+    desc: "Letterman appeared as a guest on Norm's show, reversing the usual arrangement. Each seemed genuinely delighted to be in the other's presence. Several excellent jokes were told.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+live+david+letterman"
+  },
+  {
+    title: "NML — Conan O'Brien Guest",
+    cat: "Norm Macdonald Live",
+    year: "2016",
+    source: "Norm Macdonald Live",
+    desc: "Conan was a recurring guest. The conversations ranged from comedy theory to things that were not comedy theory but became funny anyway.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+live+conan"
+  },
+  {
+    title: "NML — Adam Eget as Permanent Sidekick",
+    cat: "Norm Macdonald Live",
+    year: "2013–2018",
+    source: "Norm Macdonald Live",
+    desc: "Adam Eget served as his co-host for the run of the show. Norm made jokes at Adam Eget's expense regularly. Adam Eget was a willing participant in this.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+live+adam+eget"
+  },
+  {
+    title: "NML — Gilbert Gottfried Guest",
+    cat: "Norm Macdonald Live",
+    year: "2014",
+    source: "Norm Macdonald Live",
+    desc: "Two comedians who each had a fully developed philosophy about what a joke should be sat together. The result was predictably singular.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+live+gilbert+gottfried"
+  },
+  {
+    title: "NML — Artie Lange Guest",
+    cat: "Norm Macdonald Live",
+    year: "2016",
+    source: "Norm Macdonald Live",
+    desc: "A long-form conversation that covers territory most interviews avoid. A useful document of how Norm interviewed people, which was: as though he had all the time in the world.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+live+artie+lange"
+  },
+
+  // ROASTS
+  {
+    title: "Bob Saget Roast — The Clean Set",
+    cat: "Roasts",
+    year: "2008",
+    source: "Comedy Central Roast of Bob Saget",
+    desc: "He was given five minutes to roast Bob Saget and instead performed jokes from a 1949 joke book. Old-fashioned jokes. Clean jokes. Terrible jokes. The audience didn't know what to do. Several roasters were visibly angry. Norm continued.",
+    link: "https://www.youtube.com/watch?v=rBnj8ZkByBg",
+    embed: "rBnj8ZkByBg"
+  },
+  {
+    title: "Roast of Chevy Chase",
+    cat: "Roasts",
+    year: "2002",
+    source: "New York Friars Club Roast",
+    desc: "An earlier roast at which Norm was also present and also did something the format didn't quite accommodate. A recurring pattern in his relationship with formats.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+chevy+chase+roast"
+  },
+
+  // HOSTING
+  {
+    title: "ESPY Awards Monologue (1998)",
+    cat: "Hosting",
+    year: "1998",
+    source: "The ESPY Awards",
+    desc: "He hosted the sports awards show and opened with a monologue that included several O.J. Simpson jokes. O.J. Simpson was present. Norm had known this in advance.",
+    link: "https://www.youtube.com/watch?v=cACpFXdbX4A",
+    embed: "cACpFXdbX4A"
+  },
+  {
+    title: "ESPY — Tiger Woods Bit",
+    cat: "Hosting",
+    year: "1998",
+    source: "The ESPY Awards",
+    desc: "During the same broadcast, Norm commented on Tiger Woods with the tone of a man filing a weather report. The observation was accurate. The context made it funnier.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+espy+1998"
+  },
+
+  // ONE-LINERS
+  {
+    title: "The Dog/Doorbell Joke",
+    cat: "One-Liners",
+    year: "Various",
+    source: "Various Appearances",
+    desc: "\"A dog has no reason to ring a doorbell.\" The most logical setup possible. The most logical punchline. The gap between them is where the joke lives.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+dog+doorbell+joke"
+  },
+  {
+    title: "That's Not a Loss, That's a Draw",
+    cat: "One-Liners",
+    year: "Various",
+    source: "Various / Twitter",
+    desc: "A response to the observation that life is a zero-sum game. He disagreed with the premise on technical grounds. The technical grounds were funny.",
+    link: "https://twitter.com/normmacdonald"
+  },
+  {
+    title: "Parents Having Sex",
+    cat: "One-Liners",
+    year: "Various",
+    source: "Various Appearances",
+    desc: "A one-liner about the logical conclusion of being alive that arrives at a place of genuine discomfort. He delivered it with no discomfort.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+one+liners"
+  },
+  {
+    title: "The Suicide Hotline Bit",
+    cat: "One-Liners",
+    year: "Various",
+    source: "Various Appearances",
+    desc: "A structural joke about what the end of a suicide hotline call technically constitutes. The logic is airtight. The conclusion is wrong in a very precise way.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+jokes"
+  },
+  {
+    title: "Twitter One-Liners",
+    cat: "One-Liners",
+    year: "2011–2017",
+    source: "@normmacdonald",
+    desc: "His Twitter account was treated as a comedy medium. He posted jokes there as though filing dispatches. They were frequently retweeted by people who did not fully understand them, which he would have found acceptable.",
+    link: "https://twitter.com/normmacdonald"
+  },
+  {
+    title: "The Doctor Joke",
+    cat: "One-Liners",
+    year: "Various",
+    source: "Various",
+    desc: "\"A doctor gave a man six months to live. The man couldn't pay his bill so he gave him another six months.\" He told this joke often. It was always funny. He knew it was always funny.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+six+months+joke"
+  },
+  {
+    title: "The Moth Joke — One-Line Summary",
+    cat: "One-Liners",
+    year: "Various",
+    source: "Meta",
+    desc: "He once summarized the moth joke in one sentence for an interviewer who hadn't seen it. The one-sentence version is also good.",
+    link: "https://www.youtube.com/watch?v=AxFzTHzYFI8"
+  },
+
+  // DARK BITS
+  {
+    title: "Lucky Stabbin' Hat",
+    cat: "Dark Bits",
+    year: "2011",
+    source: "Me Doing Standup",
+    desc: "A bit about luck that arrives at a definition of luck that makes you feel it has always been this definition and you simply hadn't heard it stated correctly before.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+lucky+stabbing+hat"
+  },
+  {
+    title: "9/11 Airlines",
+    cat: "Dark Bits",
+    year: "Post-2001",
+    source: "Various",
+    desc: "He told jokes about September 11th. This was considered too soon by most people. He disagreed. He continued.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+dark+bits"
+  },
+  {
+    title: "The Death Bits — Nothing Special",
+    cat: "Dark Bits",
+    year: "2020",
+    source: "Nothing Special (Netflix, 2022)",
+    desc: "He filmed a set about death while he was dying. He did not tell the audience that he was dying. He told jokes about death. They were funny. Later they were something else as well.",
+    link: "https://www.youtube.com/watch?v=7DKfadjWQeU"
+  },
+  {
+    title: "Disease Jokes",
+    cat: "Dark Bits",
+    year: "Various",
+    source: "Various",
+    desc: "Jokes about illness. He had been ill for nine years before he died and did not publicly disclose this. The jokes about illness are therefore retroactively something they were not initially.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+stand+up"
+  },
+  {
+    title: "The Gambling Bit",
+    cat: "Dark Bits",
+    year: "Various",
+    source: "Various Interviews",
+    desc: "He had a documented gambling problem. He talked about it openly. He made it funny in a way that suggested he understood exactly what it was and continued anyway.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+gambling"
+  },
+
+  // FILM & TV
+  {
+    title: "Dirty Work (1998)",
+    cat: "Film & TV",
+    year: "1998",
+    source: "Film — MGM",
+    desc: "A movie he wrote and starred in, about a revenge-for-hire business. It was not a commercial success. It has since become something people seek out on purpose, which is the better outcome.",
+    link: "https://www.youtube.com/results?search_query=dirty+work+1998+norm+macdonald"
+  },
+  {
+    title: "Billy Madison (1995)",
+    cat: "Film & TV",
+    year: "1995",
+    source: "Film — Universal",
+    desc: "He played a bus driver with some opinions. He was in the film briefly. The brief time he was in the film is remembered more clearly than some of the film.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+billy+madison"
+  },
+  {
+    title: "Dr. Dolittle (1998)",
+    cat: "Film & TV",
+    year: "1998",
+    source: "Film — 20th Century Fox",
+    desc: "He voiced a dog in this film. His delivery as the dog was identical to his delivery as himself, which turned out to be correct for the part.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+dr+dolittle"
+  },
+  {
+    title: "Scrubs — Guest Arc",
+    cat: "Film & TV",
+    year: "2001",
+    source: "TV — NBC/ABC",
+    desc: "He appeared on Scrubs in a recurring role as a patient. He was funny in ways the show was designed to accommodate and also in ways it wasn't.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+scrubs"
+  },
+  {
+    title: "The Orville",
+    cat: "Film & TV",
+    year: "2017",
+    source: "TV — Fox",
+    desc: "He voiced an alien character on Seth MacFarlane's space show. He was a blob. He sounded like himself. This was appropriate.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+the+orville"
+  },
+  {
+    title: "The Norm Show (1999–2001)",
+    cat: "Film & TV",
+    year: "1999–2001",
+    source: "TV — ABC",
+    desc: "His own sitcom, in which he played a disgraced hockey player turned social worker. The show ran for three seasons. He wrote much of it. It is better than its reputation.",
+    link: "https://www.youtube.com/results?search_query=the+norm+show+abc"
+  },
+  {
+    title: "Saturday Night Live — Cast Member",
+    cat: "Film & TV",
+    year: "1993–1998",
+    source: "NBC — Saturday Night Live",
+    desc: "He was a cast member for five seasons. He hosted Weekend Update for four of them. He was fired. The firing is almost as famous as the tenure.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+snl+best+moments"
+  },
+
+  // RARE & OBSCURE
+  {
+    title: "Early Canadian Stand-Up",
+    cat: "Rare & Obscure",
+    year: "Late 1980s",
+    source: "Canadian Comedy Circuit",
+    desc: "He began performing in Canada. Recordings from this period are rare. What exists suggests he arrived more or less fully formed, which is either encouraging or discouraging depending on what you are trying to do.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+early+standup"
+  },
+  {
+    title: "The Jim Rome Show Appearance",
+    cat: "Rare & Obscure",
+    year: "1998",
+    source: "The Jim Rome Show",
+    desc: "A radio appearance around the time of the ESPY Awards. He told more O.J. jokes. The host was a sports radio host and thus had a different relationship to the material.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+radio"
+  },
+  {
+    title: "Marc Maron's WTF Podcast",
+    cat: "Rare & Obscure",
+    year: "2011",
+    source: "WTF with Marc Maron",
+    desc: "A long-form interview in which Norm talked about comedy in ways he didn't usually talk about comedy in public. He was candid. He was also funny during the candor, because he didn't know another way.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+marc+maron+wtf"
+  },
+  {
+    title: "CBC Radio Appearances",
+    cat: "Rare & Obscure",
+    year: "1990s",
+    source: "CBC Radio Canada",
+    desc: "Early radio work for the Canadian Broadcasting Corporation. The formal, dry CBC style suited him in the way that formal, dry things often suited him.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+cbc"
+  },
+  {
+    title: "The Sports Show with Norm Macdonald",
+    cat: "Rare & Obscure",
+    year: "2011",
+    source: "Comedy Central",
+    desc: "A late-night sports show on Comedy Central that lasted one season. He was passionate about sports in the same way he was passionate about other things: with the outward appearance of someone who found the whole thing faintly absurd.",
+    link: "https://www.youtube.com/results?search_query=sports+show+norm+macdonald+comedy+central"
+  },
+  {
+    title: "Reddit AMA",
+    cat: "Rare & Obscure",
+    year: "2014",
+    source: "Reddit r/IAmA",
+    desc: "He answered questions from the internet. Several of the answers were jokes. Several of the jokes were better than the questions deserved. One or two of them were answers.",
+    link: "https://www.reddit.com/r/normmacdonald"
+  },
+  {
+    title: "Norm Macdonald Has a Show (Netflix, 2018)",
+    cat: "Norm Macdonald Live",
+    year: "2018",
+    source: "Netflix",
+    desc: "A ten-episode Netflix series in which he conducted interviews from a couch. The interviews included David Letterman, Jane Fonda, and Chevy Chase. The Chevy Chase interview was notable for several reasons.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+has+a+show+netflix"
+  },
+  {
+    title: "Conan Appearances — Complete Run",
+    cat: "Talk Shows",
+    year: "1993–2018",
+    source: "Late Night / Conan",
+    desc: "He appeared on Conan's show more than any other comedian of his era. Conan has said in various ways that Norm was his favorite guest. He meant it.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+conan+all+appearances"
+  },
+  {
+    title: "The Best of Weekend Update — Full Comp",
+    cat: "Weekend Update",
+    year: "1994–1997",
+    source: "SNL / YouTube",
+    desc: "A fan-assembled compilation of his full run on Weekend Update. All four seasons. The O.J. jokes are present throughout in the way a drumbeat is present throughout a song.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+weekend+update+full+compilation",
+    embed: "XFGAQrEUaeU"
+  },
+  {
+    title: "Turd Ferguson — Celebrity Jeopardy Compilation",
+    cat: "SNL Sketches",
+    year: "1996–2001",
+    source: "Saturday Night Live",
+    desc: "All appearances of his Burt Reynolds character across the Celebrity Jeopardy sketches. He appeared to be enjoying himself more than was strictly necessary for the role.",
+    link: "https://www.youtube.com/results?search_query=celebrity+jeopardy+turd+ferguson+norm"
+  },
+  {
+    title: "Anti-Joke: 'A horse walked into a bar'",
+    cat: "One-Liners",
+    year: "Various",
+    source: "Various",
+    desc: "His relationship to the anti-joke was that of a scholar who found the academy slightly ridiculous. He would tell a joke whose structure promised one thing and delivered, completely seriously, something far more literal.",
+    link: "https://www.youtube.com/results?search_query=norm+macdonald+anti+joke"
+  },
+  {
+    title: "Nothing Special — Panel Discussion",
+    cat: "Stand-Up",
+    year: "2022",
+    source: "Netflix — Nothing Special",
+    desc: "Appended to the filmed set: a panel of his comedian friends watching it for the first time and reacting. The set had already been funny. The panel made it something else.",
+    link: "https://www.youtube.com/watch?v=7DKfadjWQeU"
+  }
+];
+
+const FOOTER_QUOTES = [
+  "I don't think there's anything wrong with being a gambler. I think there's something wrong with being a bad gambler.",
+  "The only time you really live fully is from thirty to sixty. The young are slaves to dreams; the old servants of regrets. Only the middle-aged have all their five senses in the keeping of their wits.",
+  "Comedians don't laugh. It's solemn work.",
+  "A joke is a very serious thing.",
+  "I hate trying to be funny. That's my whole act, trying not to be funny.",
+  "Death is the enemy of comedy, because when you die, the whole thing isn't funny anymore.",
+  "The moth went to the podiatrist because the light was on. That's the whole joke. Right there.",
+  "There's no such thing as too soon. That's a misconception. If something is really funny, the timing doesn't matter.",
+  "I am constantly asked why I don't do topical jokes. The truth is I am just not that interested in the news.",
+  "A good joke needs one thing: it needs to be funny."
+];
+
+let currentQuote = 0;
+let activeFilter = 'all';
+let searchTerm = '';
+
+function renderCards() {
+  const grid = document.getElementById('cards-grid');
+  const countEl = document.getElementById('results-count');
+
+  const filtered = BITS.filter(bit => {
+    const matchesCat = activeFilter === 'all' || bit.cat === activeFilter;
+    const q = searchTerm.toLowerCase();
+    const matchesSearch = !q || 
+      bit.title.toLowerCase().includes(q) ||
+      bit.desc.toLowerCase().includes(q) ||
+      bit.cat.toLowerCase().includes(q) ||
+      bit.source.toLowerCase().includes(q) ||
+      bit.year.toLowerCase().includes(q);
+    return matchesCat && matchesSearch;
+  });
+
+  countEl.textContent = `${filtered.length} result${filtered.length !== 1 ? 's' : ''}`;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<p class="no-results">Nothing found. He would have found this acceptable.</p>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(bit => `
+    <article class="bit-card fade-in">
+      <div class="card-top">
+        <span class="card-cat">${bit.cat}</span>
+        <span class="card-year">${bit.year}</span>
+      </div>
+      <h3 class="card-title">${bit.title}</h3>
+      <p class="card-source">${bit.source}</p>
+      <p class="card-desc">${bit.desc}</p>
+      ${bit.embed ? `
+        <div class="card-embed">
+          <iframe src="https://www.youtube.com/embed/${bit.embed}" 
+            title="${bit.title}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
+        </div>
+      ` : ''}
+      ${bit.link ? `<a href="${bit.link}" target="_blank" rel="noopener" class="card-link">Watch / Listen →</a>` : ''}
+    </article>
+  `).join('');
+}
+
+function setFilter(cat) {
+  activeFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.cat === cat);
+  });
+  renderCards();
+}
+
+function showQuote() {
+  const el = document.getElementById('footer-quote-text');
+  el.style.opacity = '0';
+  setTimeout(() => {
+    el.textContent = FOOTER_QUOTES[currentQuote];
+    el.style.opacity = '1';
+  }, 300);
+}
+
+function nextQuote() {
+  currentQuote = (currentQuote + 1) % FOOTER_QUOTES.length;
+  showQuote();
+}
+
+function prevQuote() {
+  currentQuote = (currentQuote - 1 + FOOTER_QUOTES.length) % FOOTER_QUOTES.length;
+  showQuote();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('total-count').textContent = BITS.length;
+
+  document.getElementById('search').addEventListener('input', e => {
+    searchTerm = e.target.value;
+    renderCards();
+  });
+
+  document.getElementById('filter-btns').addEventListener('click', e => {
+    if (e.target.classList.contains('filter-btn')) {
+      setFilter(e.target.dataset.cat);
+    }
+  });
+
+  renderCards();
+  showQuote();
+  setInterval(nextQuote, 8000);
+});
+</script>
+</body>
+</html>
